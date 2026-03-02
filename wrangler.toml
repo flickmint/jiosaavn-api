@@ -1,3 +1,8 @@
 name = "jiosaavn-api"
 main = "src/index.ts"
 compatibility_date = "2026-03-02"
+
+[vars]
+ENABLE_RATE_LIMIT = "true"
+LIMITED_REQ_COUNT = "5"
+RATE_LIMIT_BYPASS_KEY_HASH = ""

@@ -1,145 +1,148 @@
-<div align=center>
+<h1 align="center">VergeLyrics Music API</h1>
 
-![][ci] ![][views] ![][stars] ![][forks] ![][issues] ![][license] ![][code-size] ![][commit-activity]
+<p align="center">
+  A lightweight, Cloudflare Workers-powered API built with Hono.
+</p>
 
-<img src="./public/jiosaavn-2.png" width="200px"/>
+<hr/>
 
-# 🎵 Jio Saavn API
+<h2>🚀 Overview</h2>
 
-### A simple wrapper for the Jio Saavn API powered by Hono.js 🔥.
+<p>
+This project provides an unofficial API wrapper for JioSaavn, built using
+<strong>Hono</strong> and deployed on <strong>Cloudflare Workers</strong>.
+It exposes endpoints for songs, albums, playlists, artists, search, radio, and more.
+</p>
 
-[**📚 Documentation**](https://jiosaavn.rajputhemant.me/docs) (Scalar UI) · [**OpenAPI JSON**](https://jiosaavn.rajputhemant.me/openapi.json)
+<hr/>
 
-## ✨ Features
+<h2>⚙️ Tech Stack</h2>
 
-</div>
+<ul>
+  <li>Hono (Edge-first web framework)</li>
+  <li>Cloudflare Workers</li>
+  <li>TypeScript</li>
+  <li>Wrangler</li>
+</ul>
 
-- 🚀 **Ultrafast** - Powered by [Hono.js](https://hono.dev).The router `RegExpRouter` is really fast.
-- 🪶 **Lightweight** - Has minimal dependencies.
-- 🌍 **Multi-runtime** - Works on `Bun`, `Node.js`, `Vercel`, and `Cloudflare Workers`.
-- 🔥 Download High Quality Songs, w/ lyrics for supported songs.
-- 🎵 Get Songs, Albums, Playlists, Artists, Radio Stations, Podcasts Lyrics, Recommendations, and more.
-- ❤️ Open Source
+<hr/>
 
-## 📚 API Documentation
+<h2>📦 Installation</h2>
 
-- **Scalar API Reference**: `GET /docs`
-- **OpenAPI JSON**: `GET /openapi.json`
+<pre><code>git clone https://github.com/your-username/your-repo.git
+cd your-repo
+npm install
+</code></pre>
 
-<div align=center>
+<hr/>
 
-## 🛠️ Building from source
+<h2>🔧 Development</h2>
 
-</div>
+<pre><code>npm run dev
+</code></pre>
 
-- Clone the repository
+<p>
+This will start a local development server using Wrangler.
+</p>
 
-```
-git clone https://github.com/rajput-hemant/jiosaavn-api
-cd jiosaavn-api
-```
+<hr/>
 
-- Install dependencies
+<h2>🌍 Deployment</h2>
 
-```
-bun i || pnpm i || npm i || yarn
-```
+<pre><code>npm run deploy
+</code></pre>
 
-#### Bun
+<p>
+Make sure your <code>wrangler.toml</code> is properly configured.
+</p>
 
-> [!Warning]
-> You need to have [Bun.js](https://bun.sh) installed on your machine to run the project with bun.
+<hr/>
 
-```
-bun run dev || pnpm dev || npm run dev || yarn dev
-```
+<h2>🔐 Environment Variables</h2>
 
-<div align = center>
+<p>Add the following to your <code>wrangler.toml</code>:</p>
 
-## 🌐 Deploying your own instance
+<pre><code>[vars]
+ENABLE_RATE_LIMIT = "true"
+LIMITED_REQ_COUNT = "5"
+RATE_LIMIT_BYPASS_KEY_HASH = ""
+</code></pre>
 
-You can easily deploy your own hosted version of the `JioSaavn API` by clicking on one of the links below, which will set up a ready-to-go version for you:
+<hr/>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rajput-hemant/jiosaavn-api)
+<h2>📚 API Documentation</h2>
 
-[![Deploy with Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/rajput-hemant/jiosaavn-api)
+<ul>
+  <li><strong>API Docs:</strong> <code>/docs</code></li>
+  <li><strong>OpenAPI JSON:</strong> <code>/openapi.json</code></li>
+</ul>
 
-</div>
+<hr/>
 
-> [!Important]
-> Deploy in an India region so all APIs work properly. Recommended region: `Mumbai, India (South) - bom1`
+<h2>📌 Available Endpoints</h2>
 
-> [!Note]
-> For Cloudflare Workers, remove any `process`-related code before deploying.
+<ul>
+  <li><code>/song</code> – Get song details</li>
+  <li><code>/album</code> – Get album details</li>
+  <li><code>/playlist</code> – Get playlist details</li>
+  <li><code>/artist</code> – Get artist details</li>
+  <li><code>/search</code> – Search content</li>
+  <li><code>/radio</code> – Create radio stations</li>
+  <li><code>/modules</code> – Browse modules</li>
+  <li><code>/show</code> – Show & episodes</li>
+  <li><code>/get</code> – Trending & featured content</li>
+  <li><code>/ping</code> – Health check</li>
+</ul>
 
-### Build and Run Docker Image
+<hr/>
 
-#### Docker Compose (Recommended)
+<h2>⚡ Rate Limiting</h2>
 
-- Start the container
+<p>
+Rate limiting is configurable using environment variables.
+By default, requests are limited per IP.
+</p>
 
-```
-docker-compose up -d # detached mode
-```
+<p>
+To bypass rate limiting, send:
+</p>
 
-- Stop the container
+<pre><code>x-ratelimit-bypass: YOUR_SECRET_HASH</code></pre>
 
-```
-docker-compose stop # stops the container
-docker-compose down # stops and removes the container
-```
+<hr/>
 
-#### Docker
+<h2>❗ Error Handling</h2>
 
-- Start Docker daemon (Skip if already running)
+<p>
+All errors follow a consistent JSON format:
+</p>
 
-```
-sudo dockerd
-```
+<pre><code>{
+  "status": "Failed",
+  "message": "Error message",
+  "data": null
+}
+</code></pre>
 
-- Build the image
+<hr/>
 
-```
-docker build -t jiosaavn .
-```
+<h2>📄 License</h2>
 
-- Run the image
+<p>
+This project is for educational purposes only.
+It is not affiliated with JioSaavn.
+</p>
 
-```
-docker run -p 80:3000 jiosaavn
-```
+<hr/>
 
-- Open http://localhost to view it in the browser.
+<h2>👨‍💻 Author</h2>
 
-- Stop the container
+<p>
+Made with ❤️ using Cloudflare Workers.
+</p>
 
-```
-docker ps
-```
+<hr/>
 
-```
-docker stop <container-id>
-```
-
-<div align=center>
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🦾 Contributors:
-
-<a href="https://github.com/rajput-hemant/jiosaavn-api/graphs/contributors" target="blank"> <img src="https://contrib.rocks/image?repo=rajput-hemant/jiosaavn-api&max=500" />
-
-</div>
-
-<!----------------------------------{ Labels }--------------------------------->
-
-[views]: https://komarev.com/ghpvc/?username=jiosaavn-api&label=view%20counter&color=red&style=flat
-[code-size]: https://img.shields.io/github/languages/code-size/rajput-hemant/jiosaavn-api
-[issues]: https://img.shields.io/github/issues-raw/rajput-hemant/jiosaavn-api
-[license]: https://img.shields.io/github/license/rajput-hemant/jiosaavn-api
-[commit-activity]: https://img.shields.io/github/commit-activity/w/rajput-hemant/jiosaavn-api
-[forks]: https://img.shields.io/github/forks/rajput-hemant/jiosaavn-api?style=flat
-[stars]: https://img.shields.io/github/stars/rajput-hemant/jiosaavn-api
-[ci]: https://github.com/rajput-hemant/jiosaavn-api/actions/workflows/ci.yml/badge.svg
+<p align="center">
+  ⭐ If you found this useful, consider giving the repository a star.
+</p>

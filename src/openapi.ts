@@ -91,7 +91,7 @@ export function createOpenApiDocument(origin: string): OpenApiDocument {
   return {
     openapi: "3.1.0",
     info: {
-      title: "JioSaavn API",
+      title: "VL Music API",
       description: "An unofficial wrapper for the JioSaavn API.",
       version: "0.1.0",
     },

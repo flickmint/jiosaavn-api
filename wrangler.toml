@@ -1,2 +1,3 @@
-name = "api"
-compatibility_date = "2023-01-01"
+name = "jiosaavn-api"
+main = "src/index.ts"
+compatibility_date = "2026-03-02"

@@ -1,236 +1,126 @@
 import { Hono } from "hono";
-
 import { config } from "../lib/config";
 
 export const home = new Hono().get("/", (c) =>
   c.html(`<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>JioSaavn API</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/png" href="favicon.png" />
-		<meta name="title" content="JioSaavn API" />
-		<meta name="description" content="JioSaavn API by rajput-hemant@github" />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="${config.urls.siteUrl}" />
-		<meta property="og:title" content="JioSaavn API" />
-		<meta property="og:description" content="JioSaavn API by rajput-hemant@github" />
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="${config.urls.siteUrl}" />
-		<meta property="twitter:title" content="JioSaavn API by rajput-hemant@github" />
-		<meta
-			property="twitter:description"
-			content="JioSaavn API by rajput-hemant@github"
-		/>
-		<script src="https://cdn.tailwindcss.com"></script>
-	</head>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VL Music API</title>
 
-	<style>
-		.no-select {
-			-webkit-tap-highlight-color: transparent;
-			-webkit-touch-callout: none;
-			-webkit-user-select: none;
-			-khtml-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-		}
-		.no-select:focus {
-			outline: none !important;
-		}
+<meta name="description" content="VL Music API by VergeLyrics" />
+<meta property="og:url" content="${config.urls.siteUrl}" />
+<meta property="og:title" content="VL Music API" />
+<meta property="og:description" content="Modern Unofficial JioSaavn API" />
 
-		/* https://github.com/rajput-hemant/react-template-vite/blob/master/src/styles/layout.css */
-		.layout {
-			background-image: radial-gradient(
-					hsla(0, 0%, 84%, 0.25) 1px,
-					transparent 0
-				),
-				radial-gradient(hsla(0, 0%, 65%, 0.2) 1px, transparent 0);
-			background-size: 50px 50px;
-			background-position: 0 0, 25px 25px;
-			-webkit-animation: slide 2s linear infinite;
-			animation: slide 4s linear infinite;
-		}
+<script src="https://cdn.tailwindcss.com"></script>
 
-		@keyframes slide {
-			100% {
-				background-position: 50px 0, 125px 25px;
-			}
-		}
+<style>
+  body {
+    background: radial-gradient(circle at 20% 20%, #1f1f2e, #0e0e14 60%);
+  }
 
-		.cards:hover > .card::after {
-			opacity: 1;
-		}
+  .glass {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-		.card::before {
-			background: radial-gradient(
-				800px circle at var(--mouse-x) var(--mouse-y),
-				rgba(255, 255, 255, 0.06),
-				transparent 40%
-			);
-			z-index: 3;
-		}
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+  }
 
-		.card::after {
-			background: radial-gradient(
-				600px circle at var(--mouse-x) var(--mouse-y),
-				rgba(255, 255, 255, 0.4),
-				transparent 40%
-			);
-			z-index: 1;
-		}
-	</style>
+  .gradient-text {
+    background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-	<body
-		class="layout m-0 flex min-h-screen flex-col items-center justify-center bg-[#141414] p-0 text-white"
-	>
-		<div
-			class="cards grid grid-cols-1 lg:grid-cols-2 gap-6 rounded-xl mb-16 lg:mb-0"
-		>
-			<div class="lg:col-span-2 my-4 lg:mb-8 w-full">
-				<div class="flex w-full flex-row items-center space-x-4 px-8">
-					<p
-						class="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-2xl font-bold leading-none text-transparent md:text-4xl"
-					>
-						JioSaavn API
-					</p>
+  .animate-bg {
+    background-size: 300% 300%;
+    animation: gradientMove 10s ease infinite;
+  }
 
-					<p
-						class="max-w-fit rounded-md bg-zinc-800 px-3 py-2 text-center text-xs font-bold uppercase tracking-wide text-white shadow-lg shadow-black hover:shadow-xl hover:shadow-black"
-					>
-						Unofficial
-					</p>
-				</div>
-			</div>
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+</head>
 
-			<a
-				href="${config.urls.docsUrl}"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="card before: before:transition-opcacity after:transition-opcacity relative flex h-[180px] w-full lg:h-[225px] lg:w-[500px] flex-col rounded-xl bg-white/10 shadow-lg shadow-black transition-shadow duration-500 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl before:opacity-0 before:duration-500 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-xl after:opacity-0 after:duration-500 hover:shadow-2xl hover:shadow-black before:hover:opacity-100"
-			>
-				<div
-					class="absolute inset-[1px] z-[2] flex grow flex-col items-center justify-center rounded-xl bg-[#171717] p-2.5 px-8"
-				>
-					<div class="flex flex-col">
-						<span
-							class="mb-1 lg:mb-4 max-w-fit rounded-md bg-red-500/10 p-2 text-center text-xs font-bold uppercase tracking-wide text-red-500 shadow shadow-black"
-						>
-							Docs
-						</span>
+<body class="min-h-screen text-white flex flex-col items-center justify-center px-6">
 
-						<span class="mt-2 text-2xl font-bold text-neutral-200">
-							Documentation
-						</span>
+<!-- HERO -->
+<div class="text-center mb-16">
+  <h1 class="text-5xl md:text-6xl font-extrabold gradient-text animate-bg">
+    VL Music API
+  </h1>
+  <p class="mt-6 text-neutral-400 text-lg max-w-xl mx-auto">
+    A fast, modern, unofficial JioSaavn API built with Hono and powered by Cloudflare Workers.
+  </p>
+</div>
 
-						<p class="mt-2 text-neutral-400">
-							Check out the documentation to learn how to use the JioSaavn API.
-						</p>
-					</div>
-				</div>
-			</a>
+<!-- CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
 
-			<a
-				href="https://github.com/rajput-hemant/jiosaavn-api"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="card before: before:transition-opcacity after:transition-opcacity relative flex h-[180px] w-full lg:h-[225px] lg:w-[500px] flex-col rounded-xl bg-white/10 shadow-lg shadow-black transition-shadow duration-500 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl before:opacity-0 before:duration-500 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-xl after:opacity-0 after:duration-500 hover:shadow-2xl hover:shadow-black before:hover:opacity-100"
-			>
-				<div
-					class="absolute inset-[1px] z-[2] flex grow flex-col items-center justify-center rounded-xl bg-[#171717] p-2.5 px-8"
-				>
-					<div class="flex flex-col">
-						<span
-							class="mb-1 lg:mb-4 max-w-fit rounded-md bg-green-500/10 p-2 text-center text-xs font-bold uppercase tracking-wide text-green-500 shadow shadow-black"
-						>
-							Open Source
-						</span>
+  <!-- Docs -->
+  <a href="${config.urls.docsUrl}" target="_blank"
+     class="glass card-hover transition-all duration-300 rounded-2xl p-8">
+    <div class="text-sm uppercase tracking-widest text-purple-400 font-semibold">
+      Documentation
+    </div>
+    <h2 class="text-2xl font-bold mt-3">Explore API Docs</h2>
+    <p class="mt-3 text-neutral-400">
+      View complete OpenAPI reference and usage examples.
+    </p>
+  </a>
 
-						<span class="mt-2 text-2xl font-bold text-neutral-200">
-							Open source
-						</span>
+  <!-- GitHub -->
+  <a href="https://github.com/vergelyrics/music" target="_blank"
+     class="glass card-hover transition-all duration-300 rounded-2xl p-8">
+    <div class="text-sm uppercase tracking-widest text-green-400 font-semibold">
+      Open Source
+    </div>
+    <h2 class="text-2xl font-bold mt-3">View Source Code</h2>
+    <p class="mt-3 text-neutral-400">
+      Fully open-source and community driven.
+    </p>
+  </a>
 
-						<p class="mt-2 text-neutral-400">
-							Jiosaavn API is open-source. Check out the source code at github.
-						</p>
-					</div>
-				</div>
-			</a>
+  <!-- Issues -->
+  <a href="https://github.com/vergelyrics/music/issues" target="_blank"
+     class="glass card-hover transition-all duration-300 rounded-2xl p-8">
+    <div class="text-sm uppercase tracking-widest text-pink-400 font-semibold">
+      Contribute
+    </div>
+    <h2 class="text-2xl font-bold mt-3">Report Bugs / Request Features</h2>
+    <p class="mt-3 text-neutral-400">
+      Found an issue? Want improvements? Open an issue or PR.
+    </p>
+  </a>
 
-			<a
-				href="https://github.com/rajput-hemant/jiosaavn-api/issues"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="card before: before:transition-opcacity after:transition-opcacity relative flex h-[180px] w-full lg:h-[225px] lg:w-[500px] flex-col rounded-xl bg-white/10 shadow-lg shadow-black transition-shadow duration-500 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl before:opacity-0 before:duration-500 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-xl after:opacity-0 after:duration-500 hover:shadow-2xl hover:shadow-black before:hover:opacity-100"
-			>
-				<div
-					class="absolute inset-[1px] z-[2] flex grow flex-col items-center justify-center rounded-xl bg-[#171717] p-2.5 px-8"
-				>
-					<div class="flex flex-col">
-						<span
-							class="mb-1 lg:mb-4 max-w-fit rounded-md bg-violet-500/10 p-2 text-center text-xs font-bold uppercase tracking-wide text-violet-500 shadow shadow-black"
-						>
-							Collaborate
-						</span>
+  <!-- Author -->
+  <a href="https://github.com/vergelyrics" target="_blank"
+     class="glass card-hover transition-all duration-300 rounded-2xl p-8">
+    <div class="text-sm uppercase tracking-widest text-blue-400 font-semibold">
+      Maintainer
+    </div>
+    <h2 class="text-2xl font-bold mt-3">VergeLyrics</h2>
+    <p class="mt-3 text-neutral-400">
+      Modified version of original unofficial API for educational purposes.
+    </p>
+  </a>
 
-						<span class="mt-2 text-2xl font-bold text-neutral-200">
-							Features / Bugs
-						</span>
+</div>
 
-						<p class="mt-2 text-neutral-400">
-							Found a bug? Please report it. If you'd like to contribute, feel
-							free to raise a PR.
-						</p>
-					</div>
-				</div>
-			</a>
+<!-- FOOTER -->
+<footer class="mt-20 text-neutral-500 text-sm text-center">
+  <p>© 2026 VergeLyrics. Built with Hono + Cloudflare Workers.</p>
+</footer>
 
-			<a
-				href="https://github.com/rajput-hemant"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="card before: before:transition-opcacity after:transition-opcacity relative flex h-[180px] w-full lg:h-[225px] lg:w-[500px] flex-col rounded-xl bg-white/10 shadow-lg shadow-black transition-shadow duration-500 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl before:opacity-0 before:duration-500 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-xl after:opacity-0 after:duration-500 hover:shadow-2xl hover:shadow-black before:hover:opacity-100"
-			>
-				<div
-					class="absolute inset-[1px] z-[2] flex grow flex-col items-center justify-center rounded-xl bg-[#171717] p-2.5 px-8"
-				>
-					<div class="flex flex-col">
-						<span
-							class="mb-1 lg:mb-4 max-w-fit rounded-md bg-blue-500/10 p-2 text-center text-xs font-bold uppercase tracking-wide text-blue-500 shadow shadow-black"
-						>
-							Author
-						</span>
-
-						<span class="mt-2 text-2xl font-bold text-neutral-200">
-							rajput-hemant
-						</span>
-
-						<p class="mt-2 text-neutral-400">
-							Jiosaavn unofficial API is created by rajput-hemant. Check out
-							other projects at github.
-						</p>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<span class="fixed bottom-4 text-neutral-400">
-			© Copyright 2023. All rights reserved.
-		</span>
-	</body>
-
-	<script>
-		document.getElementsByClassName("cards")[0].onmousemove = (e) => {
-			for (const card of document.getElementsByClassName("card")) {
-				const rect = card.getBoundingClientRect(),
-					x = e.clientX - rect.left,
-					y = e.clientY - rect.top;
-
-				card.style.setProperty("--mouse-x", \`\${x}px\`);
-				card.style.setProperty("--mouse-y", \`\${y}px\`);
-			}
-		};
-	</script>
-</html>`),
+</body>
+</html>`)
 );

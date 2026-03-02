@@ -2,7 +2,7 @@ export const config = {
   urls: {
     baseUrl: "https://www.jiosaavn.com/api.php",
     docsUrl: "/docs",
-    siteUrl: "https://jiosaavn.rajputhemant.me",
+    siteUrl: "https://www.vergelyrics.com",
     lrclibUrl: "https://lrclib.net/api/get",
   },
 

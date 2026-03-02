@@ -32,7 +32,7 @@ app.get(
   "/docs",
   Scalar({
     url: "/openapi.json",
-    pageTitle: "JioSaavn API Reference",
+    pageTitle: "VL JS API Reference",
     theme: "deepSpace",
   }),
 );

@@ -6,12 +6,6 @@ export const config = {
     lrclibUrl: "https://lrclib.net/api/get",
   },
 
-  rateLimit: {
-    enable: process.env.ENABLE_RATE_LIMIT === "true" || false,
-    limitedReqCount: +(process.env.LIMITED_REQ_COUNT || 5),
-    bypassKeyHash: process.env.RATE_LIMIT_BYPASS_KEY_HASH ?? "",
-  },
-
   endpoint: {
     modules: {
       launch_data: "webapi.getLaunchData",
